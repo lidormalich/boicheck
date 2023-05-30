@@ -33,9 +33,7 @@ const Main: FunctionComponent<MainProps> = () => {
                         placeholder="123456789"
                         name="clientId"
                         value={formik.values.clientId}
-                        onChange={(e) => {
-                            formik.handleChange(e); console.log(e.currentTarget.value.length);
-                        }}
+                        onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                     />
                     <label htmlFor="clientId">תעודת זהות לבדיקה</label>
@@ -45,11 +43,11 @@ const Main: FunctionComponent<MainProps> = () => {
                 </div>
 
 
-                <button type="submit" className="btn btn-success w-100 my-3"
-                    disabled={!formik.isValid || !formik.dirty}
-                    onClick={() => console.log("jhjjsj")}
-                >בדיקה
-                    {/* <i className="fa-solid fa-angles-right"></i> */}
+                <button type="submit" className="btn btn-info w-100 my-3"
+                    disabled={!formik.isValid || !formik.dirty}>
+                    <i className="fa-solid fa-angles-left"></i>
+                    בדיקה
+                    <i className="fa-solid fa-angles-right"></i>
                 </button>
                 {/* <i class=""></i> */}
             </form>
