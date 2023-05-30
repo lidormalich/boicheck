@@ -14,18 +14,14 @@ const Main: FunctionComponent<MainProps> = () => {
         initialValues: {
             clientId: "",
         }, validationSchema: yup.object({
-            clientId: yup.number().required("נדרש תעודת זהות"),
+            clientId: yup.string().required("נדרש להכניס מספר תעודת זהות").test('len', 'האורך אמור להיות 9 ספרות', val => val.length === 9),
 
         }),
         onSubmit: (values: any, { resetForm }) => {
-            // const Authorization = sessionStorage.getItem("Authorization");
             navigate(`/id/${values.clientId}`)
         }
     })
     return (<>
-
-
-
         <div className="container">
             <h5 className="display-5">בדיקת לקוח</h5>
             <form onSubmit={formik.handleSubmit}>
@@ -37,7 +33,9 @@ const Main: FunctionComponent<MainProps> = () => {
                         placeholder="123456789"
                         name="clientId"
                         value={formik.values.clientId}
-                        onChange={formik.handleChange}
+                        onChange={(e) => {
+                            formik.handleChange(e); console.log(e.currentTarget.value.length);
+                        }}
                         onBlur={formik.handleBlur}
                     />
                     <label htmlFor="clientId">תעודת זהות לבדיקה</label>
